@@ -62,7 +62,6 @@
       <div class="subtitle">A letter from Felipe — piano & soft animation</div>
     </div>
     <div class="card-inner" id="cardInner">
-      <!-- paragraphs will be injected -->
       <p class="paragraph" id="p0"><strong>I decided to write you a letter</strong> since you didn’t let me send you any gifts!! But next year you’ll be with me, and I’ll try to give you the best birthday of your life 😏😘</p>
       <p class="paragraph" id="p1"><strong>Today is your birthday,</strong> but the one who truly got the gift on November 10th, 1993, was me — because from the day you were born, you were destined to find me somewhere along life’s path. And this year, it finally happened.</p>
       <p class="paragraph" id="p2"><strong>I’m so happy to celebrate this special day with you,</strong> because it’s the day my sweet love came into the world — the day that gave my life meaning. We’ll have many more of your birthdays to celebrate together, and even though I can’t be with you in person today, I’ll always be there in your heart — today and every day.</p>
@@ -85,9 +84,8 @@
   </div>
 </div>
 
-<!-- final Polish closing hidden initially -->
 <div id="finalButton" style="display:none;position:fixed;left:50%;transform:translateX(-50%);bottom:30px;z-index:9">
-  <button class="btn" id="finalBtn">„Kocham Cię bardzo, moje słoneczko. Nie mogę się doczekać, aż będziemy mogli razem świętować Twoje kolejne urodziny. Twój hubby, Felipe 💙”</button>
+  <button class="btn" id="finalBtn">„Kocham Cię bardzo, moje słoneczko. Nie mogę se doczekać, aż będziemy poder juntos celebrar Tuas outras urodziny. Seu hubby, Felipe 💙”</button>
 </div>
 
 <script>
@@ -191,8 +189,9 @@ function startAudio() {
 document.getElementById('playOverlay').addEventListener('click',()=>{
   document.getElementById('playOverlay').classList.add('hidden');
   if(!audioCtx) startAudio();
-  // start first reveal gently
-  setTimeout(()=>{ revealNext(); }, 350);
+  
+  // CORREÇÃO: Chama a função de revelação imediatamente após o clique.
+  revealNext();
 });
 
 revealBtn.addEventListener('click', ()=>{
@@ -239,26 +238,6 @@ document.getElementById('finalBtn').addEventListener('click', ()=>{
 
 // initialize hearts
 makeHearts();
-<script>
-const paragraphs = document.querySelectorAll(".letter p");
-let index = 0;
-
-function revealNext() {
-  if (index < paragraphs.length) {
-    paragraphs[index].style.opacity = 1;
-    paragraphs[index].style.transform = "translateY(0)";
-    index++;
-    setTimeout(revealNext, 2000); // controla o tempo entre parágrafos
-  }
-}
-
-document.querySelector(".play-btn").addEventListener("click", () => {
-  const audio = document.getElementById("bg-music");
-  audio.play();
-  document.querySelector(".overlay").style.display = "none";
-  revealNext();
-});
 </script>
-
 </body>
 </html>
